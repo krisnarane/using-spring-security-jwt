@@ -171,9 +171,3 @@ security.config.expiration=3600000
 - `UserService` aplica BCrypt na senha e evita duplicidade de username.
 - `DataInitializer` cria `admin/admin` com `ROLE_ADMIN` no start.
 
-## Próximos passos (sugestões)
-
-- Adicionar refresh token e endpoint de logout (revogação por blacklist/cache se necessário).
-- Usar anotações de autorização por role (ex.: `@PreAuthorize("hasRole('ADMIN')")`).
-- Mover segredo JWT para variável de ambiente e configurar profiles.
-
