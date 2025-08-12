@@ -48,9 +48,9 @@ public class AuthController {
             jwtObject.setRoles(user.getRoles());
 
             String token = JWTCreator.create(securityConfig.getPrefix(), securityConfig.getKey(), jwtObject);
-            return ResponseEntity.ok(new TokenResponse(token));
+            return ResponseEntity.ok(new TokenResponse("Login realizado com sucesso!", token));
         } catch (BadCredentialsException ex) {
-            return ResponseEntity.status(401).build();
+            return ResponseEntity.status(401).body(new TokenResponse("Credenciais inválidas, tente novamente."));
         }
     }
 }

@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.http.ResponseEntity;
+import org.springframework.http.HttpStatus;
 
 
 @RestController
@@ -20,13 +22,18 @@ public class UserController {
     private UserService service;
 
     @PostMapping
-    public void postUser(@RequestBody User user) {
+    public ResponseEntity<String> postUser(@RequestBody User user) {
         service.createUser(user);
+        return ResponseEntity.status(HttpStatus.CREATED).body("Usuário criado com sucesso!");
     }
 
     @GetMapping("/me")
-    public String me(@AuthenticationPrincipal UserDetails user) {
-        return user != null ? user.getUsername() : "anonymous";
+    public ResponseEntity<String> me(@AuthenticationPrincipal UserDetails user) {
+        if (user != null) {
+            return ResponseEntity.ok("Usuário autenticado: " + user.getUsername());
+        } else {
+            return ResponseEntity.ok("Usuário anônimo");
+        }
     }
     
 }
