@@ -15,6 +15,9 @@ public class UserService {
     private PasswordEncoder encoder;
 
     public void createUser(User user){
+        if (repository.existsByUsername(user.getUsername())) {
+            throw new IllegalArgumentException("Username already exists");
+        }
         String pass = user.getPassword();
         // criptografando antes de salvar no banco
         user.setPassword(encoder.encode(pass));

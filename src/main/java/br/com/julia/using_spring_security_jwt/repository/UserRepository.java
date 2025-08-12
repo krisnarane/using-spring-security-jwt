@@ -10,7 +10,7 @@ import br.com.julia.using_spring_security_jwt.model.User;
 public interface UserRepository extends JpaRepository<User, Integer>{
     // la busca um usuário (User) e carrega junto os papéis (roles) usando JOIN FETCH, filtrando pelo nome de usuário.
     // jpql
-    @Query("SELECT e FROM User e JOIN FETCH e.roles WHERE e.username= (:username)")
+    @Query("SELECT e FROM User e WHERE e.username = (:username)")
     // metodos de busca
     public User findByUsername(@Param("username") String username);
 
