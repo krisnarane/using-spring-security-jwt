@@ -29,7 +29,7 @@ public class User {
     private String password;
 
     @ElementCollection(fetch = FetchType.EAGER) //quando buscar um usuario, a lista de roles vem junto, outra opção é LAZY que é ao contrario
-    @CollectionTable(name = "tab_user_roles", joinColumns = @JoinColumn(name = "user_id")) //associa os roles com o usuarips
+    @CollectionTable(name = "tab_user_roles", joinColumns = @JoinColumn(name = "user_id")) //associa os roles com o usuarios
     @Column(name = "role")
     private List<String> roles = new ArrayList<>();
 
